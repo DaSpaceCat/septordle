@@ -45,34 +45,54 @@ function match(word) {
   }
 
   if (work) {
-    //word is valid
-    alert("Word is valid!");
-    //add word to board
+    //word is valid, so add it to the board
+    let state = [0,0,0,0,0];
     for (i = 0; i < 5; i++) {
-      board[guess][i].l = word[i];
+      board[guess][i].l = word[i]
       for (j = 0; j < 5; j++) {
         //check for matching letters
         if (board[guess][i].l == find[j]) {
           //if it's in the word, mark it state 1
           board[guess][i].s = 1;
+          state[i] = 1;
           if (i == j) {
             //if the letter is in the right spot, set it's state to 2
             board[guess][i].s = 2;
+            state[i] = 2;
           }
         }
       }
     }
     guess++;
-    updateDisp();
+    updateDisp(word, state);
   } else {
     alert("Word is invalid!");
   }
+
+  //check if the word is found
+  let found = true;
+  for (i = 0; i < guess; i++) {
+    for (j = 0; j < 5; j++) {
+      if (board[i][j].s < 2) {
+        found = false;
+      }
+    }
+  }
+
+  if (found) {
+    alert("You win!");
+  }
 }
 
-function updateDisp() {
+function updateDisp(word, state) {
   for (i = 1; i <= 5; i++) {
-    console.log("changing!!")
-    document.getElementById(JSON.stringify(guess) + i).innerHTML = board[guess][i - 1].l;
+    document.getElementById(JSON.stringify(guess) + i).innerHTML = word[i - 1].toUpperCase();
+    if (state[i - 1] == 1) {
+      document.getElementById(JSON.stringify(guess) + i + "b").style.backgroundColor = "rgb(255, 255, 0)";
+    }
+    if (state[i - 1] == 2) {
+      document.getElementById(JSON.stringify(guess) + i + "b").style.backgroundColor = "rgb(11,138,0)";
+    }
   }
 }
 
