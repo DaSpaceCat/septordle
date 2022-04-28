@@ -26,6 +26,7 @@ body {
   display: inline-block;
   margin-top: 0px;
   margin-bottom: 0px;
+  transition: all 0.2s;
 }
 
 p {

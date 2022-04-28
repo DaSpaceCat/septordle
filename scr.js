@@ -88,12 +88,14 @@ function updateDisp(word, state) {
   for (i = 1; i <= 5; i++) {
     document.getElementById(JSON.stringify(guess) + i).innerHTML = word[i - 1].toUpperCase();
     if (state[i - 1] == 1) {
-      document.getElementById(JSON.stringify(guess) + i + "b").style.backgroundColor = "rgb(255, 255, 0)";
+      document.getElementById(JSON.stringify(guess) + i + "b").style.backgroundColor = "rgb(150, 150, 0)";
     }
     if (state[i - 1] == 2) {
       document.getElementById(JSON.stringify(guess) + i + "b").style.backgroundColor = "rgb(11,138,0)";
     }
   }
+
+  document.getElementById('word').value = "";
 }
 
 crack();
