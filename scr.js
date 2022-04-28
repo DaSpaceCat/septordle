@@ -63,11 +63,17 @@ function match(word) {
       }
     }
     guess++;
+    updateDisp();
   } else {
     alert("Word is invalid!");
   }
 }
 
-
+function updateDisp() {
+  for (i = 1; i <= 5; i++) {
+    console.log("changing!!")
+    document.getElementById(JSON.stringify(guess) + i).innerHTML = board[guess][i - 1].l;
+  }
+}
 
 crack();
